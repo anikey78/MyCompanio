@@ -1,17 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+// backend/index.js
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const express = require("express");
+const cors = require("cors");
+require("dotenv").config();
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const app = express();
+
+// Middlewares
+app.use(cors());
+app.use(express.json());
+
+// Example route to test
+app.get("/", (req, res) => {
+  res.send("MyCompanio backend is running 🚀");
+});
+
+// You can add your AI routes here
+// const aiRouter = require("./routes/ai");
+// app.use("/api/ai", aiRouter);
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`✅ Server running on http://localhost:${PORT}`);
+});
